@@ -1,0 +1,34 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+	<id>copy-frontend-build</id>
+	<formats>
+		<format>war</format>
+	</formats>
+	 <dependencySets>
+        <dependencySet>
+            <outputDirectory>WEB-INF/lib</outputDirectory>
+            <excludes>
+                 <exclude>*:war</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+	<fileSets>
+		<fileSet>
+            <directory>${project.build.directory}/classes</directory>
+            <outputDirectory>WEB-INF/classes</outputDirectory>
+            <includes>
+                <include>/**/*</include>
+            </includes>
+        </fileSet>
+		<fileSet>
+			<directory>${frontend-build-dir-destination}</directory>
+			<includes>
+				<include>/*</include>
+				<include>/**/*</include>
+			</includes>
+			<lineEnding>unix</lineEnding>
+		</fileSet>
+	</fileSets>
+	<includeBaseDirectory>false</includeBaseDirectory>
+</assembly>
